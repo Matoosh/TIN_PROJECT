@@ -1,5 +1,5 @@
 {
-  "name": "application",
+  "name": "frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -22,17 +22,14 @@
     "@angular/router": "~11.0.5",
     "@nebular/eva-icons": "6.2.1",
     "@nebular/theme": "^6.2.1",
-    "bootstrap": "^4.5.3",
     "eva-icons": "^1.1.2",
-    "jquery": "^3.5.1",
-    "ngx-bootstrap": "^6.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1100.5",
-    "@angular/cli": "^11.0.5",
+    "@angular/cli": "~11.0.5",
     "@angular/compiler-cli": "~11.0.5",
     "@schematics/angular": "~11.0.5",
     "@types/jasmine": "~3.6.0",
