@@ -3,7 +3,7 @@ module.exports = (sequelize, Sequelize) => {
       comment: {
         type: Sequelize.STRING
       },
-      birth: {
+      created: {
         type: Sequelize.DATEONLY
       },
       account_id: {
