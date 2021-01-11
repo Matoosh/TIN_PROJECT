@@ -24,6 +24,9 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+db.accounts = require("./account.model.js")(sequelize, Sequelize);
 db.authors = require("./author.model.js")(sequelize, Sequelize);
+db.books = require("./book.model.js")(sequelize, Sequelize);
+db.comments = require("./comment.model.js")(sequelize, Sequelize);
 
 module.exports = db;
