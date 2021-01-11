@@ -1,0 +1,25 @@
+.user__section {
+    margin-left: auto;
+    margin-right: 0.5rem;
+}
+
+.logo__section {
+    .toogle__element {
+        padding-right: 1.25rem;
+        cursor:pointer;
+
+        nb-icon {
+            font-size: 1.75rem;
+            color: #8f9bb3;
+        }
+    }
+    
+
+    .logo {
+        border-left: 1px solid #edf1f7;
+        padding: 0 1.25rem;
+        font-size: 1.75rem;
+        white-space: nowrap;
+        text-decoration: none;
+    }
+}

@@ -1,0 +1,47 @@
+<nb-layout>
+    <nb-layout-column>
+        <nb-card>
+            <nb-card-header>
+                J.R.R. Tolkien
+            </nb-card-header>
+            <nb-card-body>
+                <div class="row">
+                    <div class="type">
+                        First name:
+                    </div>
+                    <div class="value">
+                        John
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="type">
+                        Last name:
+                    </div>
+                    <div class="value">
+                        Tolkien
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="type">
+                        Birth date:
+                    </div>
+                    <div class="value">
+                        1892-01-03
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </nb-layout-column>
+    <nb-layout-column>
+        <nb-card>
+            <nb-card-header>
+                Books
+            </nb-card-header>
+            <nb-list>
+                <nb-list-item *ngFor="let book of books">
+                  {{ book.title }}
+                </nb-list-item>
+            </nb-list>
+        </nb-card>
+    </nb-layout-column>
+</nb-layout>

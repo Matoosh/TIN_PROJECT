@@ -1,0 +1,12 @@
+
+
+nb-card-footer.card {
+    display: flex;
+    button {
+        width: 48%;
+    }
+
+    button:nth-child(2) {
+        margin-left: auto;
+    }
+}

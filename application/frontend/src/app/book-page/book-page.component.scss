@@ -1,0 +1,43 @@
+.comments {
+    nb-card-header {
+        display: flex;
+
+        a {
+            margin-left: auto;
+            nb-icon {
+                font-size: 2rem;
+            }
+        }
+
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+nb-card-body {
+    // display: flex;
+    .row {
+        flex-direction: row;
+        display: flex;
+        line-height: 1.5rem;
+
+        .type, .value {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .type {
+            width: 15%;
+            font-weight: 600;
+        }
+
+        .value {
+            width: 85%;
+        }
+
+    }
+
+}
