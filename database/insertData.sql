@@ -1,4 +1,4 @@
-INSERT INTO author (first_name, last_name, birth, imglink) VALUES
+INSERT INTO authors (first_name, last_name, birth, imglink) VALUES
                                                             ('John Ronald Reuel','Tolkien','1892-01-03', null),
                                                             ('Cora','Reilly','1990-01-01', null),
                                                             ('Remigiusz','Mróz','1987-01-15', null),
@@ -6,13 +6,13 @@ INSERT INTO author (first_name, last_name, birth, imglink) VALUES
                                                             ('Alicja','Sinicka','1987-04-15', null),
                                                             ('Beth','Reekles','1995-06-07', null);
 
-INSERT INTO account (login, password, email, registerdate, role) VALUES
+INSERT INTO accounts (login, password, email, registerdate, role) VALUES
                                                             ('admin', 'admin', 'admin@goodreads.com', now(), 'admin'),
                                                             ('user', 'user', 'user@goodreads.com', now(), 'user'),
                                                             ('test', 'test', 'test@goodreads.com', now(), 'user')
 
 
-INSERT INTO book (title, description, releasedate, status, imglink, author_id) values
+INSERT INTO books (title, description, releasedate, status, imglink, author_id) values
 ('Złączeni przeszłością','Moje życie to historia zdrady i kłamstwa
 Zabiłem tak wielu ludzi, ponieważ zaszkodzili naszej sprawie, ponieważ zdradzili nasz Oddział.
 Hipokryta. Kłamca. Morderca.
