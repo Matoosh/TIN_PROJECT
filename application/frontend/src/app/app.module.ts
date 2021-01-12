@@ -12,6 +12,9 @@ import { BookPageComponent } from './book-page/book-page.component';
 import { AuthorPageComponent } from './author-page/author-page.component';
 import { AuthorsPageComponent } from './authors-page/authors-page.component';
 import { CommentsComponent } from './comments/comments.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
+
 
 @NgModule({
   declarations: [
@@ -33,6 +36,15 @@ import { CommentsComponent } from './comments/comments.component';
     NbDatepickerModule.forRoot(),
     ReactiveFormsModule,
     NbToastrModule.forRoot(),
+    HttpClientModule,
+    NbAuthModule.forRoot({
+      strategies: [
+        NbPasswordAuthStrategy.setup({
+          name: 'email',
+        }),
+      ],
+      forms: {},
+    }), 
   ],
   providers: [],
   bootstrap: [AppComponent]
