@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:4200"
 };
 
 app.use(cors(corsOptions));
@@ -15,10 +15,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const db = require("./app/models");
 db.sequelize.sync();
 
+if(!db)
+    console.log("Error connecting db")
+else
+    console.log("Db connected successfully")
+
 require("./app/routes/author.routes")(app);
 require("./app/routes/account.routes")(app);
 require("./app/routes/book.routes")(app);
 require("./app/routes/comment.routes")(app);
+require("./app/routes/auth.routes")(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 1337;
 app.listen(PORT, () => {
