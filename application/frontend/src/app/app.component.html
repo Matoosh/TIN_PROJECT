@@ -10,7 +10,10 @@
         </div>
         <!-- <button nbButton status="info" size="tiny">Goodreads.com</button> -->
         <nb-actions nbContextMenuPlacement="right" class="user__section">
-            <nb-action icon="person-outline" [nbContextMenu]="userActions" nbContextMenuTrigger="hover">Log in</nb-action>
+            <nb-action icon="person-outline" [nbContextMenu]="userActions" nbContextMenuTrigger="hover"></nb-action>
+            <nb-action [nbContextMenu]="userActions" nbContextMenuTrigger="hover">
+                <nb-user [name]="user?.login"></nb-user>
+            </nb-action>
         </nb-actions>
     </nb-layout-header>
     

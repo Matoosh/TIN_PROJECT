@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NbMenuItem, NbSidebarService } from '@nebular/theme';
+import { NbAuthJWTToken, NbAuthService, NbAuthToken } from '@nebular/auth';
 
 @Component({
   selector: 'app-root',
@@ -7,16 +8,7 @@ import { NbMenuItem, NbSidebarService } from '@nebular/theme';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  
-  constructor(private sidebarService: NbSidebarService) {
-  }
-
-  
-  toggleCompact() {
-    this.sidebarService.toggle(true, 'left');
-  }
-
-  title = 'frontend';
+  user:any = {}
   items: NbMenuItem[] = [
     {
       title: 'Home',
@@ -43,16 +35,38 @@ export class AppComponent {
       link: 'author',
       icon: 'people-outline'
     }
-   ];
-
+  ];
   userActions = [
-    { 
-      title: 'Login',
-      link: '/login' 
+   { 
+     title: 'Login',
+     link: 'auth/login' 
     },
     { 
       title: 'Register',
-      link: '/register'  
+      link: 'auth/register'  
     }
   ]; 
+    
+  title = 'frontend';
+
+  
+  
+  constructor(
+    private sidebarService: NbSidebarService,
+    private authService: NbAuthService)
+    {
+      this.authService.onTokenChange()
+      .subscribe((token: NbAuthToken) => {
+
+        console.log(token)
+
+        if (token.isValid()) {
+          this.user = token.getPayload()
+        } 
+      })
+    }
+
+    toggleCompact() {
+      this.sidebarService.toggle(true, 'left');
+    }
 }

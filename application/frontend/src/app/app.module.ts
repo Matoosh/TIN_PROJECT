@@ -13,8 +13,8 @@ import { AuthorPageComponent } from './author-page/author-page.component';
 import { AuthorsPageComponent } from './authors-page/authors-page.component';
 import { CommentsComponent } from './comments/comments.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
-
+import { NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken } from '@nebular/auth';
+import { NbSecurityModule } from '@nebular/security';
 
 @NgModule({
   declarations: [
@@ -41,10 +41,53 @@ import { NbPasswordAuthStrategy, NbAuthModule } from '@nebular/auth';
       strategies: [
         NbPasswordAuthStrategy.setup({
           name: 'email',
+          baseEndpoint: 'http://localhost:1337',
+              login: {
+                endpoint: '/api/auth/login',
+                method: 'post',
+                redirect: {
+                  success: '/home',
+                  failure: null
+                }
+              },
+              register: {
+                endpoint: '/api/auth/register',
+                method: 'post',
+              },
+              logout: {
+                endpoint: '/api/auth/logout',
+                method: 'post',
+              },
+              token: {
+                class: NbAuthJWTToken,
+                key: 'token'
+              }
         }),
       ],
-      forms: {},
+      forms: {
+        login:{
+          showMessages: {
+            success: true,
+          }
+        }
+      },
     }), 
+    NbSecurityModule.forRoot({
+      accessControl: {
+        guest: {
+          view: ['home', 'books', 'book', 'authors', 'author'],
+        },
+        user: {
+          parent: 'guest',
+          create: 'comments',
+        },
+        admin: {
+          parent: 'user',
+          create: '*',
+          remove: '*',
+        },
+      },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
