@@ -9,5 +9,6 @@ module.exports = app => {
     router.put("/:id", comment.update);
     router.delete("/:id", comment.delete);
     router.delete("/", comment.deleteAll);
+    
     app.use('/api/comment', router);
   };

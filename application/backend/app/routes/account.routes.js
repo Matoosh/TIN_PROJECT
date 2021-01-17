@@ -9,5 +9,6 @@ module.exports = app => {
     router.put("/:id", account.update);
     router.delete("/:id", account.delete);
     router.delete("/", account.deleteAll);
+    
     app.use('/api/account', router);
   };
