@@ -1,5 +1,6 @@
 const db = require("../models");
 const Author = db.authors;
+const Book = db.books;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Author
@@ -31,7 +32,12 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    Author.findAll()
+    Author.findAll({
+      include: [{
+        model: Book,
+        as: 'books'
+      }]
+    })
       .then(data => {
         res.send(data);
       })
@@ -45,18 +51,32 @@ exports.findAll = (req, res) => {
 
 exports.findOne = (req, res) => {
     const id = req.params.id;
-  
-    Author.findByPk(id)
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Error retrieving Author with id=" + id
-        });
+    Author.findByPk(id,
+    {
+      include: [{
+        model: Book,
+        as: 'books'
+      }]
+    }).then(data => {
+      res.send(data);
+    }).catch(error => {
+      res.status(500).send({
+        message: "Error retrieving Author with id=" + id
       });
-  
+    })
 };
+
+exports.findOneById = (id) => {
+  let result;
+  Author.findOne({
+    where: {
+      id: id
+    }
+  }).then(data => {
+    result = data;
+  })
+  return result;
+}
 
 exports.update = (req, res) => {
     const id = req.params.id;

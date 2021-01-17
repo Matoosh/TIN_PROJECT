@@ -1,8 +1,11 @@
 const db = require("../models");
 const Book = db.books;
+const Author = db.authors;
+const Comment = db.comments;
+const Account = db.accounts;
 const Op = db.Sequelize.Op;
 
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     if (!req.body.title || !req.body.description || !req.body.author_id) {
         res.status(400).send({
           message: "Content can not be empty!"
@@ -19,6 +22,7 @@ exports.create = (req, res) => {
         author_id: req.body.author_id
     };
 
+
     Book.create(book)
         .then(data => {
             res.send(data);
@@ -30,34 +34,44 @@ exports.create = (req, res) => {
             });
         });
 };
-exports.findAll = (req, res) => {
-    Book.findAll()
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while retrieving books."
-        });
-      });  
-};
+exports.getBooks = async (req, res) => {
+  Book.findAll({
+    include: [{
+      model: Author,
+      as: 'authors'
+    }]
+  }).then(data => {
+    res.send(data);
+  });
+}
 
-exports.findOne = (req, res) => {
+
+exports.findOne = async (req, res) => {
     const id = req.params.id;
   
-    Book.findByPk(id)
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Error retrieving Book with id=" + id
-        });
+    Book.findByPk(id, {
+      include: [{
+        model: Author,
+        as: 'authors'
+      },
+      {
+        model: Comment,
+        as: 'comments',
+        include: {
+          model: Account,
+          as: 'accounts'
+        }
+      }]
+    }).then(data => {
+      res.send(data);
+    }).catch(err => {
+      res.status(500).send({
+        message: "Error retrieving Book with id=" + id
       });
+    });
 };
 
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
     const id = req.params.id;
   
     Book.update(req.body, {
@@ -81,7 +95,7 @@ exports.update = (req, res) => {
       });
 };
 
-exports.delete = (req, res) => {
+exports.delete = async (req, res) => {
     const id = req.params.id;
   
     Book.destroy({
@@ -105,7 +119,7 @@ exports.delete = (req, res) => {
       });
 };
 
-exports.deleteAll = (req, res) => {
+exports.deleteAll = async (req, res) => {
     Book.destroy({
       where: {},
       truncate: false
