@@ -14,8 +14,8 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   },
 
   define: {
-    // syncOnAssociation: false,
-    timestamps: false
+    timestamps: false,
+    logging: true
   }
 });
 
@@ -28,5 +28,14 @@ db.accounts = require("./account.model.js")(sequelize, Sequelize);
 db.authors = require("./author.model.js")(sequelize, Sequelize);
 db.books = require("./book.model.js")(sequelize, Sequelize);
 db.comments = require("./comment.model.js")(sequelize, Sequelize);
+
+db.authors.hasMany(db.books, {as: 'books', foreignKey: {name: 'author_id', allowNull: false}, constraints: true, onDelete: 'CASCADE'});
+db.books.belongsTo(db.authors, {as: 'authors', foreignKey: {name: 'author_id', allowNull: false} } );
+
+db.books.hasMany(db.comments, {as: 'comments', foreignKey: {name: 'book_id', allowNull: false}, constraints: true, onDelete: 'CASCADE'});
+db.comments.belongsTo(db.books, {as: 'books', foreignKey: {name: 'book_id', allowNull: false} } );
+
+db.accounts.hasMany(db.comments, {as: 'comments', foreignKey: {name: 'account_id', allowNull: false}, constraints: true, onDelete: 'CASCADE'});
+db.comments.belongsTo(db.accounts, {as: 'accounts', foreignKey: {name: 'account_id', allowNull: false} } );
 
 module.exports = db;
