@@ -3,16 +3,17 @@ const Comment = db.comments;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
-    if (!req.body.comment || !req.body.created || !req.body.account_id || !req.body.book_id) {
+    if (!req.body.comment || !req.body.account_id || !req.body.book_id) {
         res.status(400).send({
           message: "Content can not be empty!"
         });
         return;
     }
 
+    let currentDate = new Date();
     const comment = {
         comment: req.body.comment,
-        created: req.body.created,
+        created: currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate(),
         account_id: req.body.account_id,
         book_id: req.body.book_id
     };
