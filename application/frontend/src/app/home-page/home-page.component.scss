@@ -10,3 +10,25 @@ nb-card-footer.card {
         margin-left: auto;
     }
 }
+
+nb-layout-column.container {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 100px 50px;
+
+    .item {
+        border: 2px solid white;
+        display: grid;
+        min-height: 400px;
+        grid-template-rows: 100px 1fr; 
+        
+        &__header {
+          background: white;
+          display: flex;
+          justify-content: center;
+          align-content: center;
+          padding: 20px 30px;
+        }
+    }
+}

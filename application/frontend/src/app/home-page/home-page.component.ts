@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NbToastrService } from '@nebular/theme';
+import { LocalDataSource } from 'ng2-smart-table';
+import { ApiService } from '../api/api.service';
 
 @Component({
   selector: 'app-home-page',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+  data:any
 
-  constructor() { }
+  constructor(
+    private api: ApiService
+    ) {}
 
   ngOnInit(): void {
+    this.api.getBooks().then((response:any) => {
+      this.data = response;
+    });
   }
 
 }
