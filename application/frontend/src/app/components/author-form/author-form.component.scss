@@ -1,0 +1,34 @@
+.windowForm {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+
+    input, textarea  {
+        margin-top: .5rem;
+        width: 100%;
+    }
+
+    textarea {
+        min-height: 20rem;
+    }
+
+    button, nb-select {
+        margin-top: .5rem;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+
+        .column:first-child {
+            width: 15%;
+        }
+
+        .column:nth-child(2) {
+            width: 85%;
+        }
+    }
+
+
+}

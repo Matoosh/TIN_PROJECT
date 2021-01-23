@@ -23,3 +23,20 @@
         text-decoration: none;
     }
 }
+
+.nb-theme-corporate ng2-smart-table .ng2-smart-actions a.ng2-smart-action {    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-size: 2rem !important;
+    color: #222b45;
+}
+.ng2-smart-actions {
+    display: flex;
+
+    ng2-st-tbody-custom, ng2-st-tbody-edit-delete {
+        margin: auto;
+    }
+}

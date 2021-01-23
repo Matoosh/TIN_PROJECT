@@ -1,8 +1,8 @@
 <nb-layout>
     <nb-layout-column>
-        <nb-card>
+        <nb-card *ngIf="author">
             <nb-card-header>
-                J.R.R. Tolkien
+                {{author.first_name}} {{author.last_name}}
             </nb-card-header>
             <nb-card-body>
                 <div class="row">
@@ -10,7 +10,7 @@
                         First name:
                     </div>
                     <div class="value">
-                        John
+                        {{author.first_name}}
                     </div>
                 </div>
                 <div class="row">
@@ -18,7 +18,7 @@
                         Last name:
                     </div>
                     <div class="value">
-                        Tolkien
+                        {{author.last_name}}
                     </div>
                 </div>
                 <div class="row">
@@ -26,7 +26,7 @@
                         Birth date:
                     </div>
                     <div class="value">
-                        1892-01-03
+                        {{author.birth}}
                     </div>
                 </div>
             </nb-card-body>
@@ -38,8 +38,8 @@
                 Books
             </nb-card-header>
             <nb-list>
-                <nb-list-item *ngFor="let book of books">
-                  {{ book.title }}
+                <nb-list-item *ngFor="let book of author.books">
+                  <a routerLink="../../book/{{book.id}}">{{ book.title }}</a>
                 </nb-list-item>
             </nb-list>
         </nb-card>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NbMenuItem, NbSidebarService } from '@nebular/theme';
-import { NbAuthJWTToken, NbAuthService, NbAuthToken } from '@nebular/auth';
+import { NbAuthJWTToken, NbAuthService, NbAuthToken, NbTokenService } from '@nebular/auth';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,8 @@ import { NbAuthJWTToken, NbAuthService, NbAuthToken } from '@nebular/auth';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  user:any = {}
+  showUserIcon: boolean;
+  user:any = {};
   items: NbMenuItem[] = [
     {
       title: 'Home',
@@ -23,16 +24,6 @@ export class AppComponent {
     {
       title: 'Authors',
       link: 'authors',
-      icon: 'people-outline'
-    },
-    {
-      title: 'Book',
-      link: 'book',
-      icon: 'book-open-outline'
-    },
-    {
-      title: 'Author',
-      link: 'author',
       icon: 'people-outline'
     }
   ];
@@ -53,20 +44,27 @@ export class AppComponent {
   
   constructor(
     private sidebarService: NbSidebarService,
-    private authService: NbAuthService)
+    private authService: NbAuthService,
+    private nbTokenService: NbTokenService)
     {
+      this.showUserIcon = true;
+
       this.authService.onTokenChange()
       .subscribe((token: NbAuthToken) => {
 
-        console.log(token)
 
         if (token.isValid()) {
           this.user = token.getPayload()
-        } 
-      })
+          this.showUserIcon = false;
+        } else {
+          this.showUserIcon = true;
+        }
+      });
     }
 
     toggleCompact() {
       this.sidebarService.toggle(true, 'left');
     }
+
+    logout() {}
 }

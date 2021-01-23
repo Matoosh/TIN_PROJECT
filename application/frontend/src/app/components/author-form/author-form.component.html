@@ -1,0 +1,46 @@
+
+<form  [formGroup]="authorForm" (ngSubmit)="onSubmit()" class="windowForm">
+    <div class="row">
+        <div class="column">
+            <p>First name:</p>
+        </div>
+        <div class="column">
+            <input type="text" formControlName="first_name" nbInput fullWidth fieldSize="large" placeholder="First name" required minlength="4" [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }">
+            <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                <div *ngIf="f.first_name.errors.required">First name is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <p>Last name:</p>
+        </div>
+        <div class="column">
+            <input  type="text" formControlName="last_name" nbInput fullWidth fieldSize="large" placeholder="Last name" required [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }">
+            <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                <div *ngIf="f.last_name.errors.required">Last name is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <p>Birthday:</p>
+        </div>
+        <div class="column">
+            <input nbInput placeholder="Birthday" [nbDatepicker]="dateTimePicker" required formControlName="birth" [ngClass]="{ 'is-invalid': submitted && f.birth.errors }">
+            <div *ngIf="submitted && f.birth.errors" class="invalid-feedback">
+                <div *ngIf="f.birth.errors.required">Birth is required</div>
+            </div>
+            <nb-datepicker #dateTimePicker></nb-datepicker>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="column">
+        </div>
+        <div class="column">
+            <button *ngIf="isEditForm" nbButton>Edit author</button>
+            <button *ngIf="!isEditForm" nbButton>Add new author</button>
+        </div>
+    </div>
+</form>

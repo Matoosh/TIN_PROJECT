@@ -1,13 +1,18 @@
-.comments {
+.comments_section {
     nb-card-header {
         display: flex;
-
-        a {
-            margin-left: auto;
-            nb-icon {
-                font-size: 2rem;
+        nb-actions {
+            nb-action {
+                a {
+                    margin-left: auto;
+                    margin-top: 2px;
+                    nb-icon {
+                        font-size: 2rem;
+                    }
+                }
             }
         }
+
 
         span {
             display: flex;
@@ -40,4 +45,33 @@ nb-card-body {
 
     }
 
+}
+
+.flex {
+    display: flex;
+}
+
+.frow {
+    flex-direction: column;
+}
+
+.mt1r {
+    margin-top: .7rem;
+}
+
+.mr-auto {
+    margin-right: auto;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.delete-button {
+    cursor: pointer;
+    color: red;
+}
+
+.edit-button {
+    cursor: pointer;
 }

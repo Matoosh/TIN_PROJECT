@@ -1,0 +1,45 @@
+.ng2-smart-actions {
+    display: flex;
+    
+    ng2-st-tbody-custom, ng2-st-tbody-edit-delete {
+        margin: auto;
+    }
+}
+// .xxx {
+//     table {
+//         thead {
+//             tr:nth-child(2) {
+//                 display: none;
+//             }
+//         }
+//     }
+// }
+
+.search {
+    background-color: #f7f9fc;
+    // border-color: 
+    color: #222b45;    
+    font-size: .9375rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    padding: 1.25rem 1rem;
+    // border-style: solid;
+    border: 1px #e4e9f2 solid;
+}
+
+.form-control {
+    background-color: #f7f9fc;
+    // border-color: 
+    color: #222b45;    
+    font-size: .9375rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    padding: 1.25rem 1rem;
+    // border-style: solid;
+    border: 1px #e4e9f2 solid;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+}
+    

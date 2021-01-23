@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       created: {
-        type: Sequelize.DATEONLY
+        type: Sequelize.DATE
       },
       account_id: {
         type: Sequelize.INTEGER

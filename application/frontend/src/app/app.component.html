@@ -10,14 +10,15 @@
         </div>
         <!-- <button nbButton status="info" size="tiny">Goodreads.com</button> -->
         <nb-actions nbContextMenuPlacement="right" class="user__section">
-            <nb-action icon="person-outline" [nbContextMenu]="userActions" nbContextMenuTrigger="hover"></nb-action>
-            <nb-action [nbContextMenu]="userActions" nbContextMenuTrigger="hover">
+            <nb-action *ngIf="showUserIcon" icon="person-outline" [nbContextMenu]="userActions" nbContextMenuTrigger="hover"></nb-action>
+            <nb-action  *nbIsGranted="['create', 'comments']">
                 <nb-user [name]="user?.login"></nb-user>
             </nb-action>
+            <nb-action *nbIsGranted="['create', 'comments']" class="control-item" icon="log-out-outline" routerLink="/auth/logout"></nb-action>
         </nb-actions>
     </nb-layout-header>
     
-    <nb-sidebar tag="left"  responsive>
+    <nb-sidebar tag="left" responsive>
         <nb-menu [items]="items"></nb-menu>
     </nb-sidebar>
 

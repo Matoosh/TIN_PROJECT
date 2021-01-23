@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../api/api.service';
 
 @Component({
   selector: 'app-author-page',
@@ -6,22 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./author-page.component.scss']
 })
 export class AuthorPageComponent implements OnInit {
+  id:any;
+  author:any;
 
-  constructor() { }
-
-  books = [
-    { 
-      title: 'The Lord of the Rings: The Fellowship of the Ring',
-    },
-    { 
-      title: 'The Lord of the Rings: The Two Towers'
-    },
-    { 
-      title: 'The Lord of the Rings: The Return of the King'
-    }
-  ]; 
+  constructor(
+    private route: ActivatedRoute,
+    private api: ApiService
+  ) { }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.api.getAuthor(this.id).then((response:any) => {
+      this.author = response;
+    });
   }
 
 }

@@ -20,7 +20,7 @@ import {
   NbWindowModule,
   NbWindowService} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-// import { NbAuthService, NbTokenService, NbTokenStorage } from '@nebular/auth';
+import { NbAuthService, NbTokenService, NbTokenStorage } from '@nebular/auth';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 @NgModule({
@@ -47,8 +47,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
   providers: [
     NbThemeService,
     NbSidebarService,
-    // NbAuthService,
-    // NbTokenService,
+    NbAuthService,
+    NbTokenService,
     NbWindowService],
 })
 export class NebularThemeModule {}

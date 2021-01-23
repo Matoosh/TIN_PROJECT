@@ -1,0 +1,66 @@
+
+<form  [formGroup]="bookForm" (ngSubmit)="onSubmit()" class="windowForm">
+    <div class="row">
+        <div class="column">
+            <p>Title:</p>
+        </div>
+        <div class="column">
+            <input type="text" formControlName="title" nbInput fullWidth fieldSize="large" placeholder="Title" required [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+            <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                <div *ngIf="f.title.errors.required">Title is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <p>Description:</p>
+        </div>
+        <div class="column">
+            <textarea  type="text" formControlName="description" nbInput fullWidth fieldSize="large" placeholder="Description" required [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
+            </textarea>
+            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                <div *ngIf="f.description.errors.required">Description is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <p>Release date:</p>
+        </div>
+        <div class="column">
+            <input nbInput placeholder="Release date" [nbDatepicker]="dateTimePicker" formControlName="releasedate" required [ngClass]="{ 'is-invalid': submitted && f.releasedate.errors }">
+            <div *ngIf="submitted && f.releasedate.errors" class="invalid-feedback">
+                <div *ngIf="f.releasedate.errors.required">Release date is required</div>
+            </div>
+            <nb-datepicker #dateTimePicker></nb-datepicker>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <p>Author:</p>
+        </div>
+        <div class="column">
+            <!--  | authorFilter: searchText -->
+            <!-- [(ngModel)]="searchText" -->
+            <input type="text" (click)="showAuthors()"  nbInput fullWidth fieldSize="large" placeholder="Author ID" required formControlName="author_id" [ngClass]="{ 'is-invalid': submitted && f.author_id.errors }">
+            <div *ngIf="submitted && f.author_id.errors" class="invalid-feedback">
+                <div *ngIf="f.author_id.errors.required">Author ID is required</div>
+            </div>
+            <!-- <input type="text"  nbInput fullWidth fieldSize="large" placeholder="Author ID" formControlName="author_id"> -->
+            <ul *ngIf="searching" class="list-group list-group-flush">
+                <li class="list-group-item" *ngFor="let item of authorArrays">
+                    <span (click)="setAuthor(item.id, item.name)">{{item.name}}</span>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+        </div>
+        <div class="column">
+            <button *ngIf="isEditForm" nbButton>Edit book</button>
+            <button *ngIf="!isEditForm" nbButton>Add new book</button>
+        </div>
+    </div>
+</form>

@@ -74,7 +74,12 @@ exports.findOne = async (req, res) => {
 exports.update = async (req, res) => {
     const id = req.params.id;
   
-    Book.update(req.body, {
+    Book.update({
+      title: req.body.title,
+      description: req.body.description,
+      releasedate: req.body.releasedate,
+      author_id: req.body.author_id,
+    }, {
       where: { id: id }
     })
       .then(num => {
@@ -98,25 +103,38 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
     const id = req.params.id;
   
-    Book.destroy({
-      where: { id: id }
-    })
-      .then(num => {
-        if (num == 1) {
-          res.send({
-            message: "Book was deleted successfully!"
-          });
-        } else {
-          res.send({
-            message: `Cannot delete Book with id=${id}. Maybe Book was not found!`
-          });
-        }
+    Comment.destroy({
+      where: {book_id: id}
+    }).then(count => {
+      Book.destroy({
+        where: { id: id }
       })
-      .catch(err => {
-        res.status(500).send({
-          message: "Could not delete Book with id=" + id
+        .then(num => {
+          if (num == 1) {
+            res.send({
+              status: "success",
+              message: "Book was deleted successfully!"
+            });
+          } else {
+            res.send({
+              status: "danger",
+              message: `Cannot delete Book with id=${id}. Maybe Book was not found!`
+            });
+          }
+        })
+        .catch(err => {
+          res.status(500).send({
+            status: "danger",
+            message: "Could not delete Book with id=" + id
+          });
         });
+    })
+    .catch(err => {
+      res.status(500).send({
+        status: "danger",
+        message: "Book  wasn't deleted. Something was wrong with comments which are connected to the book." + err
       });
+    });
 };
 
 exports.deleteAll = async (req, res) => {

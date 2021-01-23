@@ -1,0 +1,12 @@
+
+<nb-card>
+    <nb-card-header>
+       New comment
+    </nb-card-header>
+    <nb-card-body>
+        <form  [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+            <textarea nbInput fullWidth placeholder="Textarea" formControlName="commentText" required></textarea>
+            <button nbButton>Add new comment</button>
+        </form>
+    </nb-card-body>
+</nb-card>
